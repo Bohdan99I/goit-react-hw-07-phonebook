@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import Notiflix from 'notiflix';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlise';
+import { addContact } from 'redux/operations';
 import { Form, FormLabel, Input, Button } from './ContactForm.styled';
 
 export const ContactForm = () => {
@@ -30,10 +31,13 @@ export const ContactForm = () => {
     const lowerCaseName = name.toLowerCase();
 
     if (contacts.some(item => item.name.toLowerCase() === lowerCaseName)) {
-      alert(`${name} is already in contacts`);
+      Notiflix.Report.warning('warning', `${name} is already in contacts`);
     } else {
-      dispatch(addContact({ name, number }));
-    }
+      dispatch(addContact({ name, number }))
+      Notiflix.Notify.success(`${name} added successfully`);
+    };         
+      
+   
     setName('');
     setNumber('');
   };
