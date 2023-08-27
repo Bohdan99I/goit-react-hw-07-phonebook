@@ -16,11 +16,9 @@ export const ContactForm = () => {
       case 'name':
         setName(value);
         break;
-      
       case 'number':
         setNumber(value);
         break;
-      
       default:
         break;
     }
@@ -33,11 +31,10 @@ export const ContactForm = () => {
     if (contacts.some(item => item.name.toLowerCase() === lowerCaseName)) {
       Notiflix.Report.warning('warning', `${name} is already in contacts`);
     } else {
-      dispatch(addContact({ name, number }))
+      dispatch(addContact({ name, number }));
       Notiflix.Notify.success(`${name} added successfully`);
-    };         
-      
-   
+    }
+
     setName('');
     setNumber('');
   };
